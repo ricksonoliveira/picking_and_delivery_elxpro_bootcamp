@@ -1,0 +1,21 @@
+<p>Products to be delivered</p>
+<ul>
+    <%= for product <- @products do %>
+    <li id={"product-" <> product.id}>
+        <p><%= product.name %></p>
+        <strong>Delivery status: </strong>
+        <button id={"update-product-" <> product.id} 
+                disabled={product.delivered} 
+                phx-click="deliver"
+                phx-target={@myself}
+                phx-value-id={product.id}
+        >
+            <%= if product.delivered do %>
+                Delivered
+            <% else %>
+                Ongoing
+            <% end %>
+        </button>
+    </li>
+    <% end %>
+</ul>
